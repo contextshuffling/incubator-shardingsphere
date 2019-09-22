@@ -1,0 +1,24 @@
+dist: xenial
+osx_image: xcode9.3
+
+language: java
+
+os:
+    - linux
+    - osx
+
+jdk:
+    - openjdk8
+    - openjdk10
+    - openjdk11
+    
+env:
+    - CMD="mvn verify -B"
+    - CMD="cd  nondex-gradle-plugin; ./gradlew check";
+
+matrix:
+    allow_failures:
+        - os: osx
+
+script: eval $CMD
+
