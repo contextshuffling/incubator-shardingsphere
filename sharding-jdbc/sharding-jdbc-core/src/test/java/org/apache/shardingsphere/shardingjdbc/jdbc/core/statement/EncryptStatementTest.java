@@ -64,7 +64,7 @@ public final class EncryptStatementTest extends AbstractEncryptJDBCDatabaseAndTa
         try (Statement statement = getEncryptConnection().createStatement()) {
             statement.execute(INSERT_SQL);
         }
-        assertResultSet(3, 2, "encryptValue", "b");
+        assertResultSet(0, 2, "encryptValue", "b");
     }
     
     @Test
@@ -76,7 +76,7 @@ public final class EncryptStatementTest extends AbstractEncryptJDBCDatabaseAndTa
             assertThat(resultSet.getInt(1), is(6));
             assertFalse(resultSet.next());
         }
-        assertResultSet(3, 6, "encryptValue", "b");
+        assertResultSet(0, 6, "encryptValue", "b");
     }
     
     @Test
@@ -84,7 +84,7 @@ public final class EncryptStatementTest extends AbstractEncryptJDBCDatabaseAndTa
         try (Statement statement = getEncryptConnection().createStatement()) {
             statement.execute(DELETE_SQL);
         }
-        assertResultSet(1, 5, "encryptValue", "b");
+        assertResultSet(0, 5, "encryptValue", "b");
     }
     
     @Test
@@ -94,7 +94,7 @@ public final class EncryptStatementTest extends AbstractEncryptJDBCDatabaseAndTa
             result = statement.executeUpdate(UPDATE_SQL);
         }
         assertThat(result, is(2));
-        assertResultSet(2, 1, "encryptValue", "f");
+        assertResultSet(0, 1, "encryptValue", "f");
     }
     
     @Test

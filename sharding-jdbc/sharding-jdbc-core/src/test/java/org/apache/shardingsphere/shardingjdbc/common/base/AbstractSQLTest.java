@@ -33,6 +33,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -44,7 +45,7 @@ public abstract class AbstractSQLTest {
     private static Set<DatabaseType> databaseTypes = Sets.newHashSet(DatabaseTypes.getActualDatabaseType("H2"));
     
     @Getter(AccessLevel.PROTECTED)
-    private static Map<DatabaseType, Map<String, DataSource>> databaseTypeMap = new HashMap<>();
+    private static Map<DatabaseType, Map<String, DataSource>> databaseTypeMap = new LinkedHashMap<>();
     
     @BeforeClass
     public static synchronized void initDataSource() {
@@ -62,7 +63,7 @@ public abstract class AbstractSQLTest {
     private static void createDataSources(final String dbName, final DatabaseType databaseType) {
         Map<String, DataSource> dataSourceMap = databaseTypeMap.get(databaseType);
         if (null == dataSourceMap) {
-            dataSourceMap = new HashMap<>();
+            dataSourceMap = new LinkedHashMap<>();
             databaseTypeMap.put(databaseType, dataSourceMap);
         }
         BasicDataSource result = buildDataSource(dbName, databaseType);

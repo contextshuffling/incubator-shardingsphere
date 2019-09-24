@@ -59,7 +59,7 @@ public final class EncryptPreparedStatementTest extends AbstractEncryptJDBCDatab
             statement.setObject(2, 'b');
             statement.execute();
         }
-        assertResultSet(3, 2, "encryptValue", "assistedEncryptValue");
+        assertResultSet(0, 2, "encryptValue", "assistedEncryptValue");
     }
     
     @Test
@@ -73,7 +73,7 @@ public final class EncryptPreparedStatementTest extends AbstractEncryptJDBCDatab
             statement.addBatch();
             statement.executeBatch();
         }
-        assertResultSet(4, 3, "encryptValue", "assistedEncryptValue");
+        assertResultSet(0, 3, "encryptValue", "assistedEncryptValue");
     }
     
     @Test
@@ -85,7 +85,7 @@ public final class EncryptPreparedStatementTest extends AbstractEncryptJDBCDatab
             assertThat(resultSet.getInt(1), is(6));
             assertFalse(resultSet.next());
         }
-        assertResultSet(3, 2, "encryptValue", "assistedEncryptValue");
+        assertResultSet(0, 2, "encryptValue", "assistedEncryptValue");
     }
     
     @Test
@@ -95,7 +95,7 @@ public final class EncryptPreparedStatementTest extends AbstractEncryptJDBCDatab
             statement.setObject(2, 1);
             statement.execute();
         }
-        assertResultSet(1, 5, "encryptValue", "assistedEncryptValue");
+        assertResultSet(0, 5, "encryptValue", "assistedEncryptValue");
     }
     
     @Test
@@ -107,7 +107,7 @@ public final class EncryptPreparedStatementTest extends AbstractEncryptJDBCDatab
             result = statement.executeUpdate();
         }
         assertThat(result, is(2));
-        assertResultSet(2, 1, "encryptValue", "assistedEncryptValue");
+        assertResultSet(0, 1, "encryptValue", "assistedEncryptValue");
     }
     
     @Test
